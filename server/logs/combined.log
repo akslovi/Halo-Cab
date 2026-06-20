@@ -1,0 +1,128 @@
+{"level":"error","message":"MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","service":"halocab","timestamp":"2026-04-21 10:21:40"}
+{"level":"error","message":"MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","service":"halocab","timestamp":"2026-04-21 10:22:40"}
+{"level":"info","message":"MongoDB connected: 127.0.0.1","service":"halocab","timestamp":"2026-04-22 10:18:19"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-04-22 10:18:19"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-04-22 10:18:19"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-04-22 10:18:19"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-04-22 10:19:52"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-04-22 10:19:53"}
+{"level":"error","message":"MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","service":"halocab","timestamp":"2026-04-23 10:03:14"}
+{"level":"info","message":"MongoDB connected: 127.0.0.1","service":"halocab","timestamp":"2026-04-23 10:03:50"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-04-23 10:03:50"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-04-23 10:03:50"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-04-23 10:03:50"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-04-23 11:23:18"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-04-23 11:23:18"}
+{"level":"info","message":"Ride booked: 69e9b4091f9aa5b674898545 by user 69e9a12d1f9aa5b6748984fa","service":"halocab","timestamp":"2026-04-23 11:24:17"}
+{"level":"info","message":"Ride request sent to 0 nearby drivers","service":"halocab","timestamp":"2026-04-23 11:24:17"}
+{"level":"info","message":"Ride 69e9b4091f9aa5b674898545 status updated to cancelled","service":"halocab","timestamp":"2026-04-23 11:24:33"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-04-23 11:27:22"}
+{"level":"error","message":"MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","service":"halocab","timestamp":"2026-04-23 16:26:30"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-04-23 16:28:57"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-04-23 16:28:57"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-04-23 16:28:57"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-04-23 16:28:57"}
+{"level":"info","message":"MongoDB connected: 127.0.0.1","service":"halocab","timestamp":"2026-04-23 16:29:00"}
+{"level":"info","message":"MongoDB connected: 127.0.0.1","service":"halocab","timestamp":"2026-04-23 16:29:47"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-04-23 16:29:47"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-04-23 16:29:47"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-04-23 16:29:47"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-04-23 16:30:44"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-04-23 16:30:45"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-04-23 16:31:26"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-04-23 16:31:27"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-04-23 16:31:28"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-04-23 16:32:52"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-04-23 16:32:55"}
+{"level":"info","message":"User logged in: admin@halocab.com","service":"halocab","timestamp":"2026-04-23 16:33:22"}
+{"level":"info","message":"Socket connected: Admin User (admin)","service":"halocab","timestamp":"2026-04-23 16:33:22"}
+{"level":"info","message":"Driver 69e9fb736f0823c4c5ad3008 KYC approved by admin 69e9fb716f0823c4c5ad2fe4","service":"halocab","timestamp":"2026-04-23 16:34:29"}
+{"level":"info","message":"Socket disconnected: Admin User","service":"halocab","timestamp":"2026-04-23 16:46:39"}
+{"level":"info","message":"Socket connected: Admin User (admin)","service":"halocab","timestamp":"2026-04-23 16:46:50"}
+{"level":"info","message":"Socket disconnected: Admin User","service":"halocab","timestamp":"2026-04-23 16:46:53"}
+{"level":"error","message":"MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","service":"halocab","timestamp":"2026-04-27 10:02:46"}
+{"level":"info","message":"MongoDB connected: 127.0.0.1","service":"halocab","timestamp":"2026-04-27 10:03:29"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-04-27 10:03:29"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-04-27 10:03:29"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-04-27 10:03:29"}
+{"level":"info","message":"OTP sent to 8700493358: 3434 (simulated)","service":"halocab","timestamp":"2026-04-27 10:07:04"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-04-27 10:07:55"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-04-27 10:07:55"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-04-27 10:09:15"}
+{"level":"info","message":"OTP sent to 7905426920: 1893 (simulated)","service":"halocab","timestamp":"2026-04-27 10:12:18"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-04-27 10:13:51"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-04-27 10:13:51"}
+{"level":"info","message":"Ride booked: 69eee9c5fd91e881bdbf61a4 by user 69eee718fd91e881bdbf6134","service":"halocab","timestamp":"2026-04-27 10:14:53"}
+{"level":"info","message":"Ride request sent to 0 nearby drivers","service":"halocab","timestamp":"2026-04-27 10:14:53"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-04-27 10:18:33"}
+{"level":"info","message":"User logged in: admin@halocab.com","service":"halocab","timestamp":"2026-04-27 10:19:12"}
+{"level":"info","message":"Socket connected: Admin User (admin)","service":"halocab","timestamp":"2026-04-27 10:19:12"}
+{"level":"info","message":"Socket disconnected: Admin User","service":"halocab","timestamp":"2026-04-27 10:19:41"}
+{"level":"info","message":"User logged in: suresh@driver.com","service":"halocab","timestamp":"2026-04-27 10:20:07"}
+{"level":"info","message":"Socket connected: Suresh Driver (driver)","service":"halocab","timestamp":"2026-04-27 10:20:07"}
+{"level":"info","message":"Driver 69eee719fd91e881bdbf614a is now offline","service":"halocab","timestamp":"2026-04-27 10:20:34"}
+{"level":"info","message":"Driver 69eee719fd91e881bdbf614a is now online","service":"halocab","timestamp":"2026-04-27 10:20:36"}
+{"level":"info","message":"Driver 69eee719fd91e881bdbf614a is now offline","service":"halocab","timestamp":"2026-04-27 10:20:54"}
+{"level":"info","message":"Driver 69eee719fd91e881bdbf614a is now online","service":"halocab","timestamp":"2026-04-27 10:20:55"}
+{"level":"info","message":"Socket disconnected: Suresh Driver","service":"halocab","timestamp":"2026-04-27 10:21:34"}
+{"level":"error","message":"MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","service":"halocab","timestamp":"2026-04-27 15:22:53"}
+{"level":"error","message":"MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","service":"halocab","timestamp":"2026-04-27 15:53:57"}
+{"level":"error","message":"MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","service":"halocab","timestamp":"2026-04-27 15:54:08"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-04-27 16:16:56"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-04-27 16:16:56"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-04-27 16:16:56"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-04-27 16:16:56"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-04-27 16:40:43"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-04-28 18:27:12"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-04-28 18:27:12"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-04-28 18:27:12"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-04-28 18:27:12"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-04-28 18:31:50"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-04-28 18:31:50"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-04-28 18:32:25"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-05-29 18:33:30"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-05-29 18:33:30"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-05-29 18:33:30"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-05-29 18:33:30"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-05-29 21:21:47"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-05-29 21:21:48"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-05-29 21:21:48"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-05-29 21:21:48"}
+{"level":"info","message":"MongoDB connected: 127.0.0.1","service":"halocab","timestamp":"2026-06-02 17:05:44"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-02 17:05:44"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-02 17:05:44"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-02 17:05:44"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-06-02 17:06:59"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-06-02 17:06:59"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-06-02 17:13:19"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-06-02 17:15:32"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-06-02 17:15:59"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-06-02 17:16:01"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-06-17 10:30:59"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-17 10:30:59"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-17 10:30:59"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-17 10:30:59"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-06-17 10:33:22"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-06-17 10:33:22"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-06-17 10:34:29"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-06-17 10:41:40"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-06-17 10:41:43"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-06-17 10:41:51"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-06-17 10:42:01"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-06-17 10:42:05"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-06-17 10:42:24"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-06-20 15:51:29"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-20 15:51:29"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-20 15:51:29"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-20 15:51:29"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-06-20 15:52:03"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-06-20 15:53:15"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-20 15:53:15"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-20 15:53:15"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-20 15:53:15"}
+{"level":"info","message":"User logged in: rahul@test.com","service":"halocab","timestamp":"2026-06-20 15:53:56"}
+{"level":"info","message":"Socket connected: Rahul Sharma (user)","service":"halocab","timestamp":"2026-06-20 15:53:57"}
+{"level":"info","message":"Socket disconnected: Rahul Sharma","service":"halocab","timestamp":"2026-06-20 16:01:50"}
+{"level":"info","message":"User logged in: admin@halocab.com","service":"halocab","timestamp":"2026-06-20 16:03:39"}
+{"level":"info","message":"Socket connected: Admin User (admin)","service":"halocab","timestamp":"2026-06-20 16:03:39"}
+{"level":"info","message":"Driver 6a36663f79bc23080eafa442 KYC approved by admin 6a36663879bc23080eafa422","service":"halocab","timestamp":"2026-06-20 16:04:10"}
