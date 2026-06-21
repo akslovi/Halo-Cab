@@ -126,3 +126,11 @@
 {"level":"info","message":"User logged in: admin@halocab.com","service":"halocab","timestamp":"2026-06-20 16:03:39"}
 {"level":"info","message":"Socket connected: Admin User (admin)","service":"halocab","timestamp":"2026-06-20 16:03:39"}
 {"level":"info","message":"Driver 6a36663f79bc23080eafa442 KYC approved by admin 6a36663879bc23080eafa422","service":"halocab","timestamp":"2026-06-20 16:04:10"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-06-21 15:29:18"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-21 15:29:18"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-21 15:29:18"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-21 15:29:18"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-06-21 15:50:11"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-21 15:50:11"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-21 15:50:11"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-21 15:50:11"}

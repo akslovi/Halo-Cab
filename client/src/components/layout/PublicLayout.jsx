@@ -27,7 +27,8 @@ const PublicLayout = ({ children }) => {
   const navigate = useNavigate();
 
   const handleLoginClick = (role) => {
-    navigate('/login');
+    const mappedRole = role === 'rider' ? 'user' : role;
+    navigate('/login', { state: { role: mappedRole } });
   };
 
   return (
@@ -78,12 +79,12 @@ const PublicLayout = ({ children }) => {
             </div>
             <p className="footer-address">
               <strong>Corporate Office:</strong><br />
-              MayaGanj, Bhagalpur<br />
-              Bihar, India <br />
+              Indra Nagar, Gorakhpur<br />
+              Uttar Pradesh, India <br />
 
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <PhoneIncoming size={16} />
-                +91-8271234568
+                +91-7905426920
               </span>
 
               <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>

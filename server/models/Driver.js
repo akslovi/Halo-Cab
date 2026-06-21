@@ -25,11 +25,6 @@ const driverSchema = new mongoose.Schema(
         uppercase: true,
       },
     },
-    address: {
-      city: { type: String, required: true, default: 'Delhi' },
-      district: { type: String, required: true, default: 'New Delhi' },
-      state: { type: String, required: true, default: 'Delhi' },
-    },
     kyc: {
       drivingLicense: { type: String, default: '' },
       registrationCert: { type: String, default: '' },

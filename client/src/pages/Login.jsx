@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Mail, Lock, User, Phone, Car, Key, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { authAPI } from '../services/api';
 
 const Login = () => {
+  const location = useLocation();
+  const initialRole = location.state?.role || 'user'; // 'user', 'driver', 'admin'
+
   const [isLogin, setIsLogin] = useState(true);
   const [loginMethod, setLoginMethod] = useState('password'); // 'password' or 'otp'
   const [otpSent, setOtpSent] = useState(false);
@@ -19,7 +22,7 @@ const Login = () => {
     phone: '',
     password: '',
     otp: '',
-    role: 'user',
+    role: initialRole,
   });
 
   const handleChange = (e) => {
@@ -27,7 +30,7 @@ const Login = () => {
   };
 
   const resetForm = () => {
-    setForm({ name: '', email: '', phone: '', password: '', otp: '', role: 'user' });
+    setForm({ name: '', email: '', phone: '', password: '', otp: '', role: initialRole });
     setOtpSent(false);
   };
 
@@ -100,8 +103,11 @@ const Login = () => {
           <X size={20} />
         </button>
         <div className="auth-logo">
-
-          <h1>HaloCab</h1>
+          <h1>
+            {initialRole === 'driver' ? (isLogin ? 'Captain Login' : 'Captain Registration') :
+             initialRole === 'admin' ? (isLogin ? 'Admin Login' : 'Admin Registration') :
+             (isLogin ? 'User Login' : 'User Registration')}
+          </h1>
           <p>Your premium ride, one tap away</p>
         </div>
 
