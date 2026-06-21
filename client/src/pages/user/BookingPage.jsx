@@ -73,6 +73,43 @@ const BookingPage = () => {
     return () => { unsub1(); unsub2(); unsub3(); unsub4(); unsub5(); };
   }, [on]);
 
+  // Automatically detect user's live location on mount
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      toast.error('Geolocation is not supported by your browser');
+      return;
+    }
+
+    const toastId = toast.loading('Detecting your live location...');
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const { latitude: lat, longitude: lng } = pos.coords;
+        let address = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+        
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
+          );
+          const data = await res.json();
+          if (data.display_name) {
+            address = data.display_name;
+          }
+        } catch (err) {
+          console.error('Reverse geocoding error:', err);
+        }
+
+        setPickup({ address, lat, lng });
+        toast.success('Live location detected!', { id: toastId });
+      },
+      (err) => {
+        console.error('Geolocation error:', err);
+        toast.error('Unable to detect live location. Please select manually.', { id: toastId });
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+  }, []);
+
   const getEstimate = async () => {
     if (!pickup || !drop) {
       toast.error('Please select pickup and drop locations');

@@ -21,6 +21,7 @@ const Login = () => {
     email: '',
     phone: '',
     password: '',
+    confirmPassword: '',
     otp: '',
     role: initialRole,
   });
@@ -30,7 +31,7 @@ const Login = () => {
   };
 
   const resetForm = () => {
-    setForm({ name: '', email: '', phone: '', password: '', otp: '', role: initialRole });
+    setForm({ name: '', email: '', phone: '', password: '', confirmPassword: '', otp: '', role: initialRole });
     setOtpSent(false);
   };
 
@@ -70,6 +71,11 @@ const Login = () => {
           navigateByRole(user.role);
         }
       } else {
+        if (form.password !== form.confirmPassword) {
+          toast.error('Passwords do not match');
+          setLoading(false);
+          return;
+        }
         const user = await register(form);
         toast.success('Account created successfully!');
         navigateByRole(user.role);
@@ -184,31 +190,6 @@ const Login = () => {
                 </div>
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Register as</label>
-                <div className="vehicle-options">
-                  <div
-                    className={`vehicle-option ${form.role === 'user' ? 'selected' : ''}`}
-                    onClick={() => setForm({ ...form, role: 'user' })}
-                    id="role-user"
-                  >
-                    <div className="vehicle-emoji">
-                      <img src="/rider.png" alt="Rider" className="role-icon-img" />
-                    </div>
-                    <div className="vehicle-name">Rider</div>
-                  </div>
-                  <div
-                    className={`vehicle-option ${form.role === 'driver' ? 'selected' : ''}`}
-                    onClick={() => setForm({ ...form, role: 'driver' })}
-                    id="role-driver"
-                  >
-                    <div className="vehicle-emoji">
-                      <img src="/driver.png" alt="Driver" className="role-icon-img" />
-                    </div>
-                    <div className="vehicle-name">Driver</div>
-                  </div>
-                </div>
-              </div>
             </>
           )}
 
@@ -304,6 +285,26 @@ const Login = () => {
                   />
                 </div>
               </div>
+
+              {!isLogin && (
+                <div className="form-group animate-fadeIn">
+                  <label className="form-label">Confirm Password</label>
+                  <div className="form-input-icon">
+                    <Lock size={16} className="icon" />
+                    <input
+                      type="password"
+                      className="form-input"
+                      name="confirmPassword"
+                      placeholder="Repeat password"
+                      value={form.confirmPassword}
+                      onChange={handleChange}
+                      required
+                      minLength={6}
+                      id="input-confirm-password"
+                    />
+                  </div>
+                </div>
+              )}
 
               <button
                 type="submit"

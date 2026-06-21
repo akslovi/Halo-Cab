@@ -60,10 +60,7 @@ const AppRoutes = () => {
         {/* Public */}
         <Route
           path="/"
-          element={isAuthenticated
-            ? <Navigate to={user?.role === 'admin' ? '/admin' : user?.role === 'driver' ? '/driver' : '/book'} />
-            : <PublicLayout><LandingPage /></PublicLayout>
-          }
+          element={<PublicLayout><LandingPage /></PublicLayout>}
         />
         <Route
           path="/login"

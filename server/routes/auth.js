@@ -5,6 +5,7 @@ const Driver = require('../models/Driver');
 const { protect } = require('../middleware/auth');
 const { registerValidator, loginValidator } = require('../middleware/validators');
 const logger = require('../utils/logger');
+const whatsappService = require('../services/whatsappService');
 
 const router = express.Router();
 
@@ -139,6 +140,9 @@ router.post('/send-otp', async (req, res, next) => {
     await user.save();
 
     logger.info(`OTP sent to ${phone}: ${otp} (simulated)`);
+
+    // Send OTP via WhatsApp message using sender 7905426920
+    await whatsappService.sendOTP(phone, otp);
 
     res.json({
       success: true,
