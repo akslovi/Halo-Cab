@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { MapPin, Search, X, Navigation } from 'lucide-react';
 
-const LocationPicker = ({ label, type = 'pickup', value, onChange, placeholder }) => {
+const LocationPicker = ({ label, type = 'pickup', value, onChange, placeholder, biasLocation }) => {
   const [query, setQuery] = useState(value?.address || '');
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -38,15 +38,32 @@ const LocationPicker = ({ label, type = 'pickup', value, onChange, placeholder }
 
     setLoading(true);
     try {
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(text)}&limit=5&addressdetails=1`
-      );
+      let url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(text)}&limit=10&addressdetails=1&countrycodes=in`;
+      
+      const bias = biasLocation || { lat: 12.9716, lng: 77.5946 };
+      if (bias && bias.lat && bias.lng) {
+        // Construct a viewbox of roughly ~1.0 degree (~111km) around the bias coordinate
+        const minLng = bias.lng - 1.0;
+        const maxLng = bias.lng + 1.0;
+        const minLat = bias.lat - 1.0;
+        const maxLat = bias.lat + 1.0;
+        url += `&viewbox=${minLng},${maxLat},${maxLng},${minLat}`;
+      }
+
+      const res = await fetch(url);
       const data = await res.json();
-      const mapped = data.map((item) => ({
-        address: item.display_name,
-        lat: parseFloat(item.lat),
-        lng: parseFloat(item.lon),
-      }));
+      const mapped = data.map((item) => {
+        const addr = item.address || {};
+        const main = item.name || addr.road || addr.suburb || addr.amenity || addr.building || item.display_name.split(',')[0];
+        const secondary = item.display_name.replace(main + ',', '').trim();
+        return {
+          address: item.display_name,
+          mainName: main,
+          secondaryName: secondary || addr.city || addr.state || '',
+          lat: parseFloat(item.lat),
+          lng: parseFloat(item.lon),
+        };
+      });
       setSuggestions(mapped);
       latestSuggestionsRef.current = mapped;
       setShowSuggestions(true);
@@ -189,11 +206,19 @@ const LocationPicker = ({ label, type = 'pickup', value, onChange, placeholder }
               key={i}
               className="suggestion-item"
               onClick={() => handleSelect(s)}
+              style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', padding: 'var(--space-3) var(--space-4)' }}
             >
-              <MapPin size={14} style={{ flexShrink: 0, opacity: 0.5 }} />
-              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {s.address}
-              </span>
+              <MapPin size={18} style={{ flexShrink: 0, opacity: 0.6, color: type === 'pickup' ? '#10b981' : '#ef4444' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                <span style={{ fontWeight: 600, fontSize: 'var(--font-sm)', color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {s.mainName}
+                </span>
+                {s.secondaryName && (
+                  <span style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {s.secondaryName}
+                  </span>
+                )}
+              </div>
             </div>
           ))}
         </div>

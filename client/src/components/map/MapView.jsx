@@ -156,16 +156,46 @@ const MapView = ({
     ? [pickup.lat, pickup.lng]
     : [12.9716, 77.5946]; // Default: Bangalore
 
-  const routeLine = useMemo(() => {
-    if (!pickup || !drop || !showRoute) return null;
-    return [
+  const [routeCoords, setRouteCoords] = useState([]);
+
+  useEffect(() => {
+    if (!pickup || !drop || !showRoute) {
+      setRouteCoords([]);
+      return;
+    }
+
+    // Initialize with direct straight line first as fallback/instant visual feedback
+    setRouteCoords([
       [pickup.lat, pickup.lng],
       [drop.lat, drop.lng],
-    ];
-  }, [pickup, drop, showRoute]);
+    ]);
+
+    let active = true;
+    const fetchRoute = async () => {
+      try {
+        const url = `https://router.project-osrm.org/route/v1/driving/${pickup.lng},${pickup.lat};${drop.lng},${drop.lat}?overview=full&geometries=geojson`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('OSRM API returned non-200');
+        const data = await res.json();
+        
+        if (active && data.routes && data.routes.length > 0) {
+          const coords = data.routes[0].geometry.coordinates.map((coord) => [coord[1], coord[0]]);
+          setRouteCoords(coords);
+        }
+      } catch (err) {
+        console.error('Failed to fetch road routing, using straight line:', err);
+      }
+    };
+
+    fetchRoute();
+
+    return () => {
+      active = false;
+    };
+  }, [pickup?.lat, pickup?.lng, drop?.lat, drop?.lng, showRoute]);
 
   return (
-    <div className="map-container" style={{ height, ...style }}>
+    <div className="map-container light-theme-map" style={{ height, ...style }}>
       <MapContainer
         center={center}
         zoom={13}
@@ -175,8 +205,8 @@ const MapView = ({
         scrollWheelZoom={interactive}
       >
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
 
         <FitBounds pickup={pickup} drop={drop} driverLocation={driverLocation} />
@@ -220,14 +250,23 @@ const MapView = ({
           />
         ))}
 
-        {routeLine && (
-          <Polyline
-            positions={routeLine}
-            color="#6366f1"
-            weight={4}
-            opacity={0.8}
-            dashArray="10 6"
-          />
+        {routeCoords.length > 0 && (
+          <>
+            {/* Ambient route shadow / outline */}
+            <Polyline
+              positions={routeCoords}
+              color="#3b82f6"
+              weight={8}
+              opacity={0.3}
+            />
+            {/* Core route line */}
+            <Polyline
+              positions={routeCoords}
+              color="#2563eb"
+              weight={5}
+              opacity={0.9}
+            />
+          </>
         )}
       </MapContainer>
     </div>

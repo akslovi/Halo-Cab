@@ -239,6 +239,7 @@ const BookingPage = () => {
               type="pickup"
               value={pickup}
               onChange={setPickup}
+              biasLocation={pickup}
             />
 
             <LocationPicker
@@ -246,6 +247,7 @@ const BookingPage = () => {
               type="drop"
               value={drop}
               onChange={setDrop}
+              biasLocation={pickup || drop}
             />
 
             <div>
