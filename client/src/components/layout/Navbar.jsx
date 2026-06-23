@@ -7,9 +7,13 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
+import { Sun, Moon } from 'lucide-react';
+import { useTheme } from '../../contexts/ThemeContext';
+
 const Navbar = () => {
   const { user, driverProfile, logout, isAdmin, isDriver } = useAuth();
   const { connected } = useSocket();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -81,6 +85,14 @@ const Navbar = () => {
                 }}
               />
             )}
+            <button
+              className="btn btn-ghost btn-sm"
+              onClick={toggleTheme}
+              title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+            </button>
             <button className="btn btn-ghost btn-sm" onClick={handleLogout} title="Logout" id="logout-btn">
               <LogOut size={16} />
             </button>

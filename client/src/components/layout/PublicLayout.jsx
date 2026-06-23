@@ -22,9 +22,13 @@ const InstagramIcon = ({ size = 20 }) => (
   </svg>
 );
 
+import { Sun, Moon } from 'lucide-react';
+import { useTheme } from '../../contexts/ThemeContext';
+
 const PublicLayout = ({ children }) => {
   const [showLoginMenu, setShowLoginMenu] = useState(false);
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   const handleLoginClick = (role) => {
     const mappedRole = role === 'rider' ? 'user' : role;
@@ -32,7 +36,7 @@ const PublicLayout = ({ children }) => {
   };
 
   return (
-    <div className="landing-page light-theme" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div className={`landing-page ${theme === 'light' ? 'light-theme' : ''}`} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       {/* Navbar */}
       <nav className="landing-navbar animate-fadeIn">
         <Link to="/" className="landing-logo" style={{ textDecoration: 'none' }}>
@@ -43,6 +47,15 @@ const PublicLayout = ({ children }) => {
         <div className="landing-nav-links">
           <Link to="/book" className="landing-link">Book a HaloCab</Link>
           <div className="landing-link-free">Free 1st ride</div>
+
+          <button
+            className="btn btn-ghost btn-sm"
+            onClick={toggleTheme}
+            style={{ color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none' }}
+            title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+          >
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
 
           <div className="landing-dropdown-container">
             <button

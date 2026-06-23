@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, useMapEvents } from 'react-leaflet';
 import { useEffect, useMemo, useState, useRef } from 'react';
 import L from 'leaflet';
+import { useTheme } from '../../contexts/ThemeContext';
 
 // Custom marker icons
 const createIcon = (color, size = 30) =>
@@ -152,6 +153,7 @@ const MapView = ({
   showRoute = true,
   interactive = true,
 }) => {
+  const { theme } = useTheme();
   const center = pickup
     ? [pickup.lat, pickup.lng]
     : [12.9716, 77.5946]; // Default: Bangalore
@@ -195,7 +197,7 @@ const MapView = ({
   }, [pickup?.lat, pickup?.lng, drop?.lat, drop?.lng, showRoute]);
 
   return (
-    <div className="map-container light-theme-map" style={{ height, ...style }}>
+    <div className={`map-container ${theme === 'light' ? 'light-theme-map' : ''}`} style={{ height, ...style }}>
       <MapContainer
         center={center}
         zoom={13}

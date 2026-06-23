@@ -263,3 +263,24 @@
 {"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-22 17:54:26"}
 {"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-22 17:54:26"}
 {"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-22 17:54:26"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-06-22 18:08:07"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-22 18:08:07"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-22 18:08:07"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-22 18:08:07"}
+{"level":"info","message":"Socket connected: Akash_test (user)","service":"halocab","timestamp":"2026-06-22 18:08:11"}
+{"level":"info","message":"Socket disconnected: Akash_test","service":"halocab","timestamp":"2026-06-22 18:08:21"}
+{"level":"info","message":"Socket connected: Akash_test (user)","service":"halocab","timestamp":"2026-06-22 18:08:22"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-06-22 18:12:48"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-22 18:12:48"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-22 18:12:48"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-22 18:12:48"}
+{"level":"info","message":"MongoDB connected: localhost","service":"halocab","timestamp":"2026-06-23 16:32:45"}
+{"level":"info","message":"🚀 HaloCab Server running on port 5000","service":"halocab","timestamp":"2026-06-23 16:32:45"}
+{"level":"info","message":"📡 Socket.IO ready for connections","service":"halocab","timestamp":"2026-06-23 16:32:45"}
+{"level":"info","message":"🌍 Environment: development","service":"halocab","timestamp":"2026-06-23 16:32:45"}
+{"level":"info","message":"OTP sent to 8081037590: 8235 (simulated)","service":"halocab","timestamp":"2026-06-23 16:32:58"}
+{"level":"info","message":"[WhatsApp Service] Sending OTP 8235 from WhatsApp Number 7905426920 to registered number 8081037590","service":"halocab","timestamp":"2026-06-23 16:32:58"}
+{"level":"info","message":"Socket connected: Akash_test (user)","service":"halocab","timestamp":"2026-06-23 16:33:05"}
+{"level":"info","message":"Ride booked: 6a3a68041315d8f4b53e4966 by user 6a37c4377ae3f1a7e2022dab","service":"halocab","timestamp":"2026-06-23 16:33:32"}
+{"level":"info","message":"Ride request sent to 0 nearby drivers","service":"halocab","timestamp":"2026-06-23 16:33:32"}
+{"level":"info","message":"Socket disconnected: Akash_test","service":"halocab","timestamp":"2026-06-23 16:44:29"}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useSocket } from '../../contexts/SocketContext';
+import { useBooking } from '../../contexts/BookingContext';
 import { rideAPI } from '../../services/api';
 import MapView from '../../components/map/MapView';
 import LocationPicker from '../../components/map/LocationPicker';
@@ -19,62 +20,42 @@ const PAYMENT_METHODS = [
   { id: 'wallet', name: 'Wallet', icon: <Wallet size={16} /> },
 ];
 
+const CANCELLATION_REASONS = [
+  { id: 'changed_plans', label: 'Changed my mind / plans' },
+  { id: 'driver_delayed', label: 'Driver is taking too long to arrive' },
+  { id: 'driver_requested', label: 'Driver asked me to cancel' },
+  { id: 'wrong_location', label: 'Wrong pickup location selected' },
+  { id: 'alternative_transport', label: 'Found alternative transport' },
+  { id: 'other', label: 'Other (please specify)' },
+];
+
 const BookingPage = () => {
   const { user } = useAuth();
-  const { on, emit } = useSocket();
+  const { emit } = useSocket();
   const navigate = useNavigate();
 
-  const [pickup, setPickup] = useState(null);
-  const [drop, setDrop] = useState(null);
-  const [vehicleType, setVehicleType] = useState('cab');
-  const [paymentMethod, setPaymentMethod] = useState('cash');
-  const [couponCode, setCouponCode] = useState('');
-  const [estimate, setEstimate] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [booking, setBooking] = useState(false);
-  const [activeRide, setActiveRide] = useState(null);
-  const [driverLocation, setDriverLocation] = useState(null);
-  const [step, setStep] = useState('location'); // location, estimate, tracking
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelReasonSelected, setCancelReasonSelected] = useState('changed_plans');
+  const [customCancelReason, setCustomCancelReason] = useState('');
 
-  // Listen for real-time events
+  const {
+    pickup, setPickup,
+    drop, setDrop,
+    vehicleType, setVehicleType,
+    paymentMethod, setPaymentMethod,
+    couponCode, setCouponCode,
+    estimate, setEstimate,
+    loading, setLoading,
+    booking, setBooking,
+    activeRide, setActiveRide,
+    driverLocation, setDriverLocation,
+    step, setStep,
+    resetBooking,
+  } = useBooking();
+
+  // Automatically detect user's live location on mount if not already tracking/selected
   useEffect(() => {
-    if (!on) return;
-    const unsub1 = on('ride_accepted', (data) => {
-      toast.success('Driver found! Your ride is on the way.');
-      setActiveRide(data.ride);
-      if (data.driver?.location) {
-        setDriverLocation({
-          lat: data.driver.location[1] || data.driver.location.lat,
-          lng: data.driver.location[0] || data.driver.location.lng,
-        });
-      }
-      setStep('tracking');
-    });
-
-    const unsub2 = on('driver_location', (data) => {
-      setDriverLocation({ lat: data.lat, lng: data.lng });
-    });
-
-    const unsub3 = on('ride_status_update', (data) => {
-      setActiveRide((prev) => prev ? { ...prev, status: data.status } : prev);
-      if (data.message) toast(data.message, { icon: '📍' });
-    });
-
-    const unsub4 = on('ride_completed', (data) => {
-      toast.success('Ride completed! Please rate your driver.');
-      setActiveRide(data.ride);
-    });
-
-    const unsub5 = on('ride_cancelled', () => {
-      toast.error('Ride has been cancelled');
-      resetBooking();
-    });
-
-    return () => { unsub1(); unsub2(); unsub3(); unsub4(); unsub5(); };
-  }, [on]);
-
-  // Automatically detect user's live location on mount
-  useEffect(() => {
+    if (activeRide || pickup) return;
     if (!navigator.geolocation) {
       toast.error('Geolocation is not supported by your browser');
       return;
@@ -108,7 +89,7 @@ const BookingPage = () => {
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
-  }, []);
+  }, [activeRide]);
 
   const getEstimate = async () => {
     if (!pickup || !drop) {
@@ -145,15 +126,34 @@ const BookingPage = () => {
     }
   };
 
-  const cancelRide = async () => {
+  const cancelRide = async (reason) => {
     if (!activeRide) return;
     try {
-      await rideAPI.cancelRide(activeRide._id, 'Changed plans');
+      await rideAPI.cancelRide(activeRide._id, reason);
       toast('Ride cancelled');
       resetBooking();
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to cancel');
     }
+  };
+
+  const handleConfirmCancel = async () => {
+    let finalReason = '';
+    if (cancelReasonSelected === 'other') {
+      if (!customCancelReason.trim()) {
+        toast.error('Please specify the reason');
+        return;
+      }
+      finalReason = customCancelReason.trim();
+    } else {
+      const reasonObj = CANCELLATION_REASONS.find(r => r.id === cancelReasonSelected);
+      finalReason = reasonObj ? reasonObj.label : 'Cancelled by user';
+    }
+
+    await cancelRide(finalReason);
+    setShowCancelModal(false);
+    setCustomCancelReason('');
+    setCancelReasonSelected('changed_plans');
   };
 
   const rateDriver = async (rating) => {
@@ -165,16 +165,6 @@ const BookingPage = () => {
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to rate');
     }
-  };
-
-  const resetBooking = () => {
-    setStep('location');
-    setActiveRide(null);
-    setEstimate(null);
-    setDriverLocation(null);
-    setPickup(null);
-    setDrop(null);
-    setCouponCode('');
   };
 
   const handleMapClick = async (latlng) => {
@@ -472,7 +462,7 @@ const BookingPage = () => {
             {/* Cancel / SOS */}
             <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
               {activeRide?.status !== 'completed' && activeRide?.status !== 'started' && (
-                <button className="btn btn-danger flex-1" onClick={cancelRide} id="cancel-ride-btn">
+                <button className="btn btn-danger flex-1" onClick={() => setShowCancelModal(true)} id="cancel-ride-btn">
                   Cancel Ride
                 </button>
               )}
@@ -503,6 +493,83 @@ const BookingPage = () => {
           height="100%"
         />
       </div>
+
+      {showCancelModal && (
+        <div className="modal-overlay" onClick={() => setShowCancelModal(false)} style={{ zIndex: 1000 }}>
+          <div className="modal" onClick={e => e.stopPropagation()} style={{ maxWidth: '450px', width: '90%' }}>
+            <div className="modal-header">
+              <h3 className="modal-title">Cancel Ride</h3>
+              <button className="btn btn-ghost btn-sm" onClick={() => setShowCancelModal(false)}>✕</button>
+            </div>
+            <div style={{ padding: 'var(--space-4)', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+              <p style={{ fontSize: 'var(--font-sm)', color: 'var(--text-muted)' }}>
+                Please select a reason for cancelling your ride:
+              </p>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
+                {CANCELLATION_REASONS.map(reason => (
+                  <label 
+                    key={reason.id} 
+                    style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: 'var(--space-2)',
+                      padding: 'var(--space-2) var(--space-3)',
+                      borderRadius: 'var(--radius-md)',
+                      background: 'var(--bg-card)',
+                      cursor: 'pointer',
+                      border: '1px solid var(--border-color)',
+                      transition: 'border-color 0.2s',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--primary)'}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--border-color)'}
+                  >
+                    <input
+                      type="radio"
+                      name="cancelReason"
+                      value={reason.id}
+                      checked={cancelReasonSelected === reason.id}
+                      onChange={() => setCancelReasonSelected(reason.id)}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    <span style={{ fontSize: 'var(--font-sm)', color: 'var(--text-primary)' }}>{reason.label}</span>
+                  </label>
+                ))}
+              </div>
+
+              {cancelReasonSelected === 'other' && (
+                <div className="form-group" style={{ marginTop: 'var(--space-2)' }}>
+                  <label className="form-label" style={{ fontSize: 'var(--font-xs)', marginBottom: 'var(--space-1)' }}>
+                    Specify cancellation reason
+                  </label>
+                  <textarea
+                    className="form-input"
+                    placeholder="Describe your reason here..."
+                    value={customCancelReason}
+                    onChange={(e) => setCustomCancelReason(e.target.value)}
+                    style={{ minHeight: '80px', resize: 'vertical' }}
+                  />
+                </div>
+              )}
+
+              <div style={{ display: 'flex', gap: 'var(--space-3)', marginTop: 'var(--space-4)' }}>
+                <button 
+                  className="btn btn-secondary flex-1" 
+                  onClick={() => setShowCancelModal(false)}
+                >
+                  Go Back
+                </button>
+                <button 
+                  className="btn btn-danger flex-1" 
+                  onClick={handleConfirmCancel}
+                >
+                  Confirm Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

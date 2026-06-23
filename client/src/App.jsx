@@ -132,30 +132,37 @@ const AppRoutes = () => {
   );
 };
 
+import { ThemeProvider } from './contexts/ThemeContext';
+import { BookingProvider } from './contexts/BookingContext';
+
 const App = () => {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <SocketProvider>
-          <AppRoutes />
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 3000,
-              style: {
-                background: '#1a1a2e',
-                color: '#f0f0f5',
-                border: '1px solid rgba(255,255,255,0.08)',
-                borderRadius: '12px',
-                fontSize: '14px',
-              },
-              success: { iconTheme: { primary: '#10b981', secondary: '#1a1a2e' } },
-              error: { iconTheme: { primary: '#ef4444', secondary: '#1a1a2e' } },
-            }}
-          />
-        </SocketProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <SocketProvider>
+            <BookingProvider>
+              <AppRoutes />
+              <Toaster
+                position="top-right"
+                toastOptions={{
+                  duration: 3000,
+                  style: {
+                    background: '#1a1a2e',
+                    color: '#f0f0f5',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: '12px',
+                    fontSize: '14px',
+                  },
+                  success: { iconTheme: { primary: '#10b981', secondary: '#1a1a2e' } },
+                  error: { iconTheme: { primary: '#ef4444', secondary: '#1a1a2e' } },
+                }}
+              />
+            </BookingProvider>
+          </SocketProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
